@@ -1,0 +1,465 @@
+Exercicio 1:
+#include <stdio.h> // Inclui a biblioteca padrão para entrada e saída
+
+// Definição de uma estrutura chamada 'pessoa'
+typedef struct {
+    double peso;   // Atributo para armazenar o peso da pessoa
+    int idade;     // Atributo para armazenar a idade da pessoa
+    double altura; // Atributo para armazenar a altura da pessoa
+} pessoa;
+
+// Função para imprimir os dados de uma pessoa
+void imprimePessoa(pessoa p) {
+    // Imprime o peso, idade e altura da pessoa formatados
+    printf("Peso: %lf. Idade: %d. Altura: %lf.\n\n", p.peso, p.idade, p.altura);
+}
+
+int main() {
+		printf("Aluno: Caio Cesar\n");
+    // Declara um vetor de 5 posições do tipo 'pessoa' e uma variável 'p1' do tipo 'pessoa'
+    pessoa pessoas[5], p1;
+    
+    // Inicializa a primeira pessoa no vetor
+    pessoas[0].peso = 80.6;   // Define o peso da primeira pessoa
+    pessoas[0].idade = 40;     // Define a idade da primeira pessoa
+    pessoas[0].altura = 1.70;  // Define a altura da primeira pessoa
+    
+    // Copia os dados da primeira pessoa para a variável 'p1'
+    p1 = pessoas[0];
+    
+    // Verifica se a idade da pessoa 'p1' é maior que 20
+    if (p1.idade > 20)
+        p1.idade++; // Se for, incrementa a idade em 1
+    
+    // Copia os dados da primeira pessoa para a segunda posição do vetor
+    pessoas[1] = pessoas[0];
+    
+    // Imprime os dados da pessoa 'p1'
+    imprimePessoa(p1);
+    // Imprime os dados da primeira pessoa do vetor
+    imprimePessoa(pessoas[0]);
+    // Imprime os dados da segunda pessoa do vetor (que é uma cópia da primeira)
+    imprimePessoa(pessoas[1]);
+    
+    // Tenta imprimir pessoas que não foram inicializadas (pessoas[2], [3], [4])
+    // Isso pode causar comportamento indefinido se não forem inicializadas
+    imprimePessoa(pessoas[2]);
+    imprimePessoa(pessoas[3]);
+    imprimePessoa(pessoas[4]);
+    
+    return 0; // Retorna 0 para indicar que o programa terminou corretamente
+}
+
+Exercicio 2:
+#include <stdio.h>       // Inclui a biblioteca padrão para entrada e saída
+#include <string.h>      // Inclui a biblioteca para manipulação de strings
+#include <locale.h>      // Inclui a biblioteca para configuração de localização
+
+// Definição da estrutura 'Carro'
+typedef struct {
+    char modelo[50];    // Atributo para armazenar o modelo do carro (máximo de 49 caracteres + '\0')
+    int ano;            // Atributo para armazenar o ano do carro
+    double preco;       // Atributo para armazenar o preço do carro
+} Carro; // Nomeia a estrutura como 'Carro'
+
+// Função para modificar o preço de um carro
+void modificarPreco(Carro *c, double novoPreco) {
+    c->preco = novoPreco; // Modifica o preço do carro para o novo preço fornecido
+}
+
+// Função para imprimir os dados de um carro
+void imprimirCarro(Carro *c) {
+    printf("Modelo: %s\n", c->modelo); // Imprime o modelo do carro
+    printf("Ano: %d\n", c->ano);        // Imprime o ano do carro
+    printf("Preco: R$ %.2lf\n", c->preco); // Imprime o preço do carro com duas casas decimais
+}
+
+int main() {
+		printf("Aluno: Caio Cesar\n");
+    setlocale(LC_ALL, "portuguese"); // Define a localidade para português, permitindo formatação correta de saída
+    Carro carro1; // Declara uma variável 'carro1' do tipo 'Carro'
+    
+    // Inicializa os dados do carro
+    strcpy(carro1.modelo, "XyZ"); // Copia a string "XyZ" para o atributo 'modelo' do carro
+    carro1.ano = 2020;             // Define o ano do carro como 2020
+    carro1.preco = 90000.00;       // Define o preço do carro como 90000.00
+    
+    printf("Dados antes da modificacao:\n"); // Imprime uma mensagem antes da modificação
+    imprimirCarro(&carro1); // Chama a função para imprimir os dados do carro, passando seu endereço
+    
+    modificarPreco(&carro1, 115000.00); // Chama a função para modificar o preço do carro para 115000.00
+    
+    printf("\nDados após a modificacao do preco:\n"); // Imprime uma mensagem após a modificação
+    imprimirCarro(&carro1); // Chama novamente a função para imprimir os dados do carro após a modificação
+    
+    return 0; // Retorna 0 para indicar que o programa terminou corretamente
+}
+
+Exercicio 3: 
+#include <stdio.h> // Inclui a biblioteca padrão para entrada e saída
+
+// Declaração da função calcularResultado que receberá um vetor e seu tamanho
+int calcularResultado(int v[], int n);
+
+int main() { // Início da função principal
+	printf("Aluno: Caio Cesar\n");
+    int vetor[5], i, resultado; // Declara um vetor de 5 inteiros e variáveis auxiliares
+
+    // Preenche o vetor com múltiplos de 2 (0, 2, 4, 6, 8)
+    for (i = 0; i < 5; i++) {
+        vetor[i] = i * 2; // Atribui a cada posição do vetor o valor i multiplicado por 2
+    }
+
+    // Chama a função calcularResultado, passando o vetor e seu tamanho, e armazena o resultado
+    resultado = calcularResultado(vetor, 5);
+    
+    // Imprime o resultado da soma dos elementos do vetor
+    printf("O resultado eh: %d\n", resultado);
+    
+    return 0; // Retorna 0 para indicar que o programa terminou corretamente
+}
+
+// Definição da função calcularResultado
+int calcularResultado(int v[], int n) {
+    int i, soma = 0; // Declara uma variável para a soma e um índice
+    
+    // Calcula a soma dos elementos do vetor
+    for (i = 0; i < n; i++) {
+        soma += v[i]; // Adiciona cada elemento do vetor à soma
+    }
+    
+    return soma; // Retorna a soma total dos elementos
+}
+
+
+Exercicio 4:
+#include<stdio.h>
+
+float calcularMedia(float notas[], int tamanho) {
+    float soma = 0.0;
+    for (int i = 0; i < tamanho; i++) {
+        soma += notas[i];
+    }
+    return soma / tamanho;
+}
+
+int main(){
+	printf("Aluno: Caio Cesar\n");
+		float notas [4];
+		for (int i = 0; i < 4; i++) {
+        printf("Digite a nota %d: ", i + 1);
+        scanf("%f", &notas[i]);
+    }
+		
+	double media = calcularMedia(notas, 4);
+	
+	printf("A media eh: %.2f\n", media);
+    if (media >= 7.0) {
+        printf("Aprovado!\n");
+    } else {
+        printf("Reprovado!\n");
+    }
+
+    return 0;
+}
+
+
+Exercicio 5:
+#include <stdio.h>
+
+void exibirImpares(int n) {
+    printf("Numeros impares de 1 ate %d (excluindo multiplos de 7):\n", n);
+    for (int i = 1; i <= n; i++) {
+        if (i % 2 != 0 && i % 7 != 0) {
+            printf("%d ", i);
+        }
+    }
+    printf("\n");
+}
+
+int main() {
+	printf("Aluno: Caio Cesar\n");
+    int numero;
+
+    printf("Digite um numero: ");
+    scanf("%d", &numero);
+
+    exibirImpares(numero);
+
+    return 0;
+}
+
+
+Exercicio 6:
+#include <stdio.h>
+
+float somarValores(float valores[], int tamanho) {
+    float soma = 0.0;
+    for (int i = 0; i < tamanho; i++) {
+        soma += valores[i];
+    }
+    return soma;
+}
+
+int main() {
+	printf("Aluno: Caio Cesar\n");
+    int n;
+
+    printf("Digite a quantidade de valores: ");
+    scanf("%d", &n);
+
+    float valores[n]; 
+
+    for (int i = 0; i < n; i++) {
+        printf("Digite o valor %d: ", i + 1);
+        scanf("%f", &valores[i]);
+    }
+
+    float soma = somarValores(valores, n);
+
+    float media = soma / n;
+
+    printf("Soma dos valores: %.2f\n", soma);
+    printf("Media dos valores: %.2f\n", media);
+
+    return 0;
+}
+
+
+Exercicio 7:
+#include <stdio.h>
+
+void encontrarMaiorValor(int valores[], int tamanho, int *maiorValor, int *posicao) {
+    *maiorValor = valores[0];
+    *posicao = 0;
+
+    for (int i = 1; i < tamanho; i++) {
+        if (valores[i] > *maiorValor) {
+            *maiorValor = valores[i];
+            *posicao = i;
+        }
+    }
+}
+
+int main() {
+	printf("Aluno: Caio Cesar\n");
+    int n;
+
+    printf("Digite a quantidade de valores: ");
+    scanf("%d", &n);
+
+    int valores[n];
+
+    for (int i = 0; i < n; i++) {
+        printf("Digite o valor %d: ", i + 1);
+        scanf("%d", &valores[i]);
+    }
+
+    int maiorValor, posicao;
+
+    encontrarMaiorValor(valores, n, &maiorValor, &posicao);
+
+    printf("O maior valor eh: %d\n", maiorValor);
+    printf("Sua posição no vetor eh: %d\n", posicao);
+
+    return 0;
+}
+
+
+Exercicios 8:
+#include<stdio.h>
+
+void exibirPares(int numero){
+    for (int i = 1; i <= numero; i++) {
+		if (i%2==0)
+			printf("%d ", i);
+	}
+	printf("\n");
+}
+	
+	int main(){
+		printf("Aluno: Caio Cesar\n");
+		
+		int digito = 0;
+		printf("Digite um numero inteiro: ");
+		scanf("%d", &digito);
+		
+		exibirPares(digito);
+	}
+
+
+Exercicio 9:
+#include<stdio.h>
+
+float multiplicaValores(int tamanho, float valores[]){
+	float multiplica = 1;
+	for(int i = 0;i<tamanho;i++){
+	multiplica = multiplica * valores[i];
+	}
+	return multiplica;
+}
+int main(){
+	printf("Aluno: Caio Cesar\n");
+	
+	int n;
+
+    printf("Digite a quantidade de valores: ");
+    scanf("%d", &n);
+
+    float valores[n]; 
+
+    for (int i = 0; i < n; i++) {
+        printf("Digite o valor %d: ", i + 1);
+        scanf("%f", &valores[i]);
+    }
+
+    float resultado = multiplicaValores(n, valores);
+
+    printf("Resultado da multiplicacao: %.2lf\n", resultado);
+
+    return 0;
+}	
+
+Exercicio 10:
+#include<stdio.h>
+
+void maiorNumero(int num1, int num2){
+if (num1>num2){
+	printf("O primeiro numero eh maior");
+	} else if(num2>num1){
+		printf("O segundo numero eh maior");
+	} else {
+		printf("Os numeros sao iguais");
+	}
+}
+
+int main(){
+	printf("Aluno: Caio Cesar\n");
+	
+	int a, b;
+	
+	printf("Digite o primeiro valor: ");
+	scanf("%d", &a);
+	
+	printf("Digite o segundo valor: ");
+	scanf("%d", &b);
+	
+ 	maiorNumero(a, b);
+	
+}
+
+
+Exercicio 11:
+#include<stdio.h>
+
+int menorNumero(int num1, int num2, int num3){
+	if(num1>num2){
+		if(num2>num3){
+			printf("O terceiro numero eh o menor");
+		} else if (num2<num3){
+			printf("O segundo numero eh o menor");
+		}
+	} else if (num2>num1){
+		if(num3>num1){
+			printf("O primeiro numero eh o menor");
+		} else if (num1>num3){
+			printf("O terceiro numero eh o menor");
+		}
+	}
+}
+
+int main(){
+	printf("Aluno: Caio Cesar\n");
+	
+	int num1, num2, num3;
+	
+	printf("Digite o primeiro valor: ");
+	scanf("%d", &num1);
+	
+	printf("Digite o segundo valor: ");
+	scanf("%d", &num2);
+
+	printf("Digite o terceiro valor: ");
+	scanf("%d", &num3);
+	
+	menorNumero(num1, num2, num3);
+	
+	}
+
+Exercicio 12:
+#include <stdio.h>
+
+void exibirInverso(int vetor[], int tamanho) {
+    printf("Números na ordem inversa:\n");
+    for (int i = tamanho - 1; i >= 0; i--) {
+        printf("%d ", vetor[i]);
+    }
+    printf("\n");
+}
+
+int main() {
+	printf("Aluno: Caio Cesar\n");
+    int vetor[10]; 
+
+    for (int i = 0; i < 10; i++) {
+        printf("Digite o numero %d: ", i + 1);
+        scanf("%d", &vetor[i]);
+    }
+
+    exibirInverso(vetor, 10);
+
+    return 0;
+}
+
+
+Exercicio 13: 
+#include <stdio.h>
+
+float calcularMedia(int num1, int num2, int num3) {
+    return (num1 + num2 + num3) / 3.0; 
+}
+
+int main() {
+		printf("Aluno: Caio Cesar\n");
+    int num1, num2, num3;
+
+    printf("Digite o primeiro numero: ");
+    scanf("%d", &num1);
+
+    printf("Digite o segundo numero: ");
+    scanf("%d", &num2);
+
+    printf("Digite o terceiro numero: ");
+    scanf("%d", &num3);
+
+    float media = calcularMedia(num1, num2, num3);
+
+    printf("A média eh: %.2f\n", media);
+
+    return 0;
+}
+
+
+Exercicio 14: 
+#include <stdio.h>
+
+int calcularResultado(int soma, int primeiroValor, int ultimoValor) {
+    return soma + (primeiroValor * 5) + (ultimoValor * 2);
+}
+
+int main() {
+		printf("Aluno: Caio Cesar\n");
+    int vetor[10]; 
+    int soma = 0; 
+
+    for (int i = 0; i < 10; i++) {
+        vetor[i] = i + 1; 
+        soma += vetor[i];
+    }
+
+    int resultado = calcularResultado(soma, vetor[0], vetor[9]);
+
+    printf("O resultado da funcao eh: %d\n", resultado);
+
+    return 0;
+}

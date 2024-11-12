@@ -1,0 +1,67 @@
+Exercicio 1
+#include<stdio.h>
+int main(){
+	int pontos[3][5];
+	int x, y, jogador1, jogador2, jogador3;
+	printf("Digite os pontos : \n");
+	for (x=0;x<3;x++){
+		if (x==0)
+		printf("Valores do jogador 1:\n");
+				if (x==1)
+		printf("Valores do jogador 2:\n");
+				if (x==2)
+		printf("Valores do jogador 3:\n");
+		for (y=0;y<5;y++){
+			scanf("%d", &pontos[x][y]);
+		}
+	}
+	for (x=0;x<3;x++){
+		for (y=0;y<5;y++){
+			if(x==0){
+				jogador1 = jogador1 + pontos[x][y];
+			} else if (x==1){
+				jogador2 = jogador2 + pontos[x][y];
+			} else 
+			jogador3 = jogador3 + pontos[x][y];
+		}
+	}
+	printf("A soma de pontos do jogador 1 eh %d pontos\nA soma de pontos do jogador 2 eh %d pontos\nE a soma de pontos do jogador 3 eh %d pontos", jogador1, jogador2, jogador3);
+		if (jogador1>jogador2 && jogador1>jogador3)
+		printf("\nO jogador 1 eh o campeao");
+		if (jogador2>jogador1 && jogador2>jogador3)
+		printf("\nO jogador 2 eh o campeao");
+		else if (jogador3>jogador1 && jogador3>jogador2)
+		printf("\nO jogador 3 eh o campeao");
+		
+		return 0;
+}
+
+
+Exercicio 2
+#include <stdio.h>
+int main() {
+    int n=0, i=0, j=0;
+
+    printf("Digite o tamanho da matriz: ");
+    scanf("%d", &n); 
+    int matriz[n][n];
+    for(i=0; i<n; i++) {
+        for(j=0;j<n; j++) {
+            if (i<j) {
+                matriz[i][j] = 0;
+            } else if (i == j) {
+                matriz[i][j] = i + 1;
+            } else {
+                matriz[i][j] = j + 1;
+            }
+        }
+    }
+    printf("Matriz resultante:\n");
+    for (i=0; i<n; i++) {
+        for (j=0; j<n; j++) {
+            printf("%d ", matriz[i][j]);
+        }
+        printf("\n");
+    }
+    return 0;
+}
